@@ -1,10 +1,11 @@
 from enum import Enum
+from abc import ABC
 
 class Etat(Enum):
     libre = "libre"
     captive = "captive"
 
-class Humain():
+class Humain(ABC):
 
     # Attributs
     def __init__(self, nom: str, boisson: str = "eau"):

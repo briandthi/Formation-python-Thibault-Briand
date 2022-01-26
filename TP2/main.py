@@ -1,3 +1,4 @@
+from turtle import title
 from personnages import Dame, Brigand, Barman, Sherif, Cowboy
 import random
 from random import randrange
@@ -101,10 +102,60 @@ class Histoire():
         elif i == 7:
             self.rechercher()
 
+import tkinter as tk
+import tkinter.ttk as ttk
+
+class Main():
+
+    def __init__(self):
+        Histoire(initialisateur)
+
+    def main(self):
+        main = Histoire(initialisateur)
+
+        root = tk.Tk()
+
+
+        Label1 = tk.Label(text = "Distribution").pack(side = tk.TOP)
+
+        # Personnages
+        list_dame = tk.Listbox()
+        for i in range(len(main.dames)):
+            list_dame.insert(i, main.dames[i].nom)
+        list_dame.pack(side = tk.LEFT)
+
+        list_cb = tk.Listbox()
+        for i in range(len(main.cowboys)):
+            list_cb.insert(i, main.cowboys[i].nom)
+        list_cb.pack(side = tk.LEFT)
+
+        list_b = tk.Listbox()
+        for i in range(len(main.brigands)):
+            list_b.insert(i, main.brigands[i].nom)
+        list_b.pack(side = tk.LEFT)
+
+        list_bar = tk.Listbox()
+        for i in range(len(main.barmans)):
+            list_bar.insert(i, main.barmans[i].nom)
+        list_bar.pack(side = tk.LEFT)
+
+        list_s = tk.Listbox()
+        for i in range(len(main.sherifs)):
+            list_s.insert(i, main.sherifs[i].nom)
+        list_s.pack()
+
+
+        action_alea = tk.Button(text="action aléatoire", command=main.rand_action).pack()
+        # brigand = ttk.Combobox(values=[brigand.nom for brigand in main.brigands]).pack(side = tk.LEFT)
+        # Label2 = tk.Label(text = "enlève").pack(side = tk.LEFT)
+        # dame = ttk.Combobox(values=[dame.nom for dame in main.dames]).pack(side = tk.LEFT)
+        # enlever = tk.Button(text="Enlever").pack(side = tk.LEFT)
+
+        root.mainloop()
+
 import pandas as pd
 
-prenoms = pd.read_csv("./Prenoms.csv", delimiter=';', encoding="iso-8859-1")
-prenoms.head()
+prenoms = pd.read_csv("TP2/Prenoms.csv", delimiter=';', encoding="iso-8859-1")
 prenoms_f, prenoms_m = preprocessing(prenoms) 
 
 looks = ['accueillant', 'adorable', 'ambitieux', 'alourdi', 'attifé', 'attrayant', 'beau', 'carré', 'costaud', 'crasseux', 'désillusionné', 'droit', 'dynamique', 'élégant']
@@ -128,17 +179,4 @@ initialisateur = {
     'couleurs':couleurs
 }
 
-import tkinter as tk
-import tkinter.ttk as ttk
-
-main = Histoire(initialisateur)
-
-root = tk.Tk()
-
-action_alea = tk.Button(text="action aléatoire", command=main.rand_action()).pack()
-brigand = ttk.Combobox(values=[brigand.nom for brigand in main.brigands]).pack(side = tk.LEFT)
-Label2 = tk.Label(text = "enlève").pack(side = tk.LEFT)
-dame = ttk.Combobox(values=[dame.nom for dame in main.dames]).pack(side = tk.LEFT)
-enlever = tk.Button(text="Enlever", command=print("hello")).pack(side = tk.LEFT)
-
-root.mainloop()
+Main().main()
